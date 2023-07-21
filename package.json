@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "sev": "http-server -c-1"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "anywhere": "^1.6.0"
+    "anywhere": "^1.6.0",
+    "http-server": "^14.1.1",
+    "serve": "^14.2.0"
   }
 }
