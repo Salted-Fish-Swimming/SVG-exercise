@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "anywhere": "^1.6.0",
-    "http-server": "^14.1.1",
-    "serve": "^14.2.0"
+    "http-server": "^14.1.1"
   }
 }
