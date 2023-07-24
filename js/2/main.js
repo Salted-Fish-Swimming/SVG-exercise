@@ -22,7 +22,7 @@ export const render1 = (root) => {
   ]));
 }
 
-export const render2 = (root) => {
+export const render = (root) => {
   root.append(svg({ ...viewSize }, [
     g([
       ...circlePoss.map(pos => circle({ ...pos.map('cx', 'cy') , r: 12 , fill: 'black' }))
@@ -31,8 +31,10 @@ export const render2 = (root) => {
   ]));
 }
 
-export const render = (root) => {
+export const render2 = (root) => {
   const rectSize = pos(20, 20);
+  const centerSize = rectSize.times(3);
+
   root.append(svg({ ...viewSize }, [
     g([
       ...circlePoss.map(pos => rect({
@@ -41,6 +43,10 @@ export const render = (root) => {
         fill: 'black'
       }))
     ]),
-    circle({ ...center.map('cx', 'cy'), r: 25, fill: '#333333' })
+    rect({
+      ...center.add(centerSize.times(-0.5)).map('x', 'y'),
+      ...centerSize.map('width', 'height'),
+      fill: '#333333'
+    })
   ]));
 }

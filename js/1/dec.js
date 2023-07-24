@@ -1,5 +1,3 @@
-// document.createElement(name, options);
-
 const dec = (name, attrs, children) => {
   const dom = document.createElement(name);
   for (const name in attrs) {
