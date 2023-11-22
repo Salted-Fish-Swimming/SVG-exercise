@@ -24,28 +24,23 @@ export class Path {
     this.before = before;
   }
 
-  toArray() {
-    return [ ...this.before, this.current ];
-  }
-
   toString () {
-    const beforeString = this.before.map(act => PA2S(act)).join(' ');
-    if (beforeString == '') {
-      return `${PA2S(this.current)}`;
+    if (this.before) {
+      return `${this.before.toString()} ${PA2S(this.current)}`;
     } else {
-      return `${beforeString} ${PA2S(this.current)}`;
+      return `${PA2S(this.current)}`;
     }
   }
 
 }
 
 Object.assign(Path.prototype, {
-  L (x, y) { return new Path(PAC.L(x, y), this.toArray()); },
-  l (dx, dy) { return new Path(PAC.l(dx, dy), this.toArray()); },
-  H (x) { return new Path(PAC.H(x), this.toArray()); },
-  h (dx) { return new Path(PAC.h(dx), this.toArray()); },
-  V (y) { return new Path(PAC.V(y), this.toArray()); },
-  v (dy) { return new Path(PAC.v(dy), this.toArray()); },
+  L (x, y) { return new Path(PAC.L(x, y), this); },
+  l (dx, dy) { return new Path(PAC.l(dx, dy), this); },
+  H (x) { return new Path(PAC.H(x), this); },
+  h (dx) { return new Path(PAC.h(dx), this); },
+  V (y) { return new Path(PAC.V(y), this); },
+  v (dy) { return new Path(PAC.v(dy), this); },
 });
 
 export const path = Object.assign((x, y) => new Path(PAC.M(x, y)), {
