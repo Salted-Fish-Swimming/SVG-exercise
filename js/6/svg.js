@@ -33,7 +33,6 @@ class SvgDom {
 export const S = (name, attrs, children) => new SvgDom(name, attrs, children);
 
 export const renderSdom = ({ name, attrs, children }) => {
-  console.log(name);
   const sdom = document.createElementNS(URI, name);
   for (const name in attrs) {
     const value = attrs[name];
