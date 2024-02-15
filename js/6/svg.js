@@ -30,7 +30,7 @@ class SvgDom {
   
 }
 
-export const S = (name, attrs, children) => new SvgDom(name, attrs, children);
+export const S = (name, attrs, children = []) => new SvgDom(name, attrs, children);
 
 export const renderSdom = ({ name, attrs, children }) => {
   const sdom = document.createElementNS(URI, name);
@@ -39,7 +39,11 @@ export const renderSdom = ({ name, attrs, children }) => {
     sdom.setAttribute(name, value);
   }
   for (const child of children) {
-    sdom.append(renderSdom(child));
+    if (typeof child === 'string') {
+      sdom.append(child);
+    } else {
+      sdom.append(renderSdom(child));
+    }
   }
   return sdom;
 }
