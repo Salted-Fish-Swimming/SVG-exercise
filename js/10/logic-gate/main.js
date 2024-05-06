@@ -3,7 +3,7 @@ import { vadd } from "../../9/vec.js";
 import { M } from "../path.js";
 import { basel, basex, basey, connect, xlTo } from "./coord.js";
 import { AndGate, NandGate, NorGate, NotGate, OrGate, XorGate } from "./logate.js";
-import { circle, path, point } from "./sdom.js";
+import { circle, g, path, point } from "./sdom.js";
 
 const text = ([ x, y ], txt) => S('text', { x, y, font: { size: 38 } }, [ txt ]);
 
@@ -38,6 +38,9 @@ export const RS_Latch = (p, v) => {
     nor1.sdom,
     nor2.sdom,
     text([ -110, 85 ], 'R'),
+    text([ -110, -55 ], 'S'),
+    text([ 110, -45 ], 'Q'),
+    text([ 110, 75 ], 'Q\''),
     line1, line2,
     line3, line4,
     line5, line6,
@@ -131,25 +134,29 @@ const Full_Adder = (p, v) => {
   
   const w2 = path(M(and2.out).L(or.in[1]).d);
   const w3 = path(M(and1.out)
-    .L([ basel(1), basel(0.5) ])
-    .L([ basel(1), basel(1.5) ])
+    .L([ basel(1.125), basel(0.5) ])
+    .L([ basel(1.125), basel(1.5) ])
     .L(or.in[0]).d);
 
   const ls = path(M(xor2.out).L([ basel(3.5), basel(-1.25) ]).d);
   const lco = path(M(or.out).L([ basel(3.5), basel(1.75) ]).d);
+
+  const gname = (name, children) => g({ class: name }, children);
+
   return [
     and1.sdom, and2.sdom,
     xor1.sdom, xor2.sdom,
     or.sdom,
-    la1, la2, ap,
-    lb1, lb2, bp,
-    lci1, lci2, cip,
-    w1l1, w1lp, w1l2,
-    w2, w3,
-    ls, lco,
+    gname('A', [ la1, la2, ap, ]),
+    gname('B', [lb1, lb2, bp]),
+    gname('Ci', [lci1, lci2, cip]),
+    gname('wire-1', [w1l1, w1lp, w1l2]),
+    gname('wire-2', [w2]),
+    gname('wire-3', [w3]),
+    gname('S', [ls]), gname('Co', [lco]),
   ]
 }
 
 export const renderSubSdoms = () => {
-  return Full_Adder([0, 0], basex(1));
+  return RS_Latch([0, 0], basex(1));
 }

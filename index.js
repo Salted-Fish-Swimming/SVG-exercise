@@ -1,3 +1,3 @@
-import { render } from './js/6/main.js'
+import { render } from './js/10/main.js'
 
 render(document.body);

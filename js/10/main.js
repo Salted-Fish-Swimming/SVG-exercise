@@ -10,7 +10,7 @@ const viewBox = ({ width, height, origin }) => {
 }
 
 export const render = root => {
-  const size = rect(600, 500);
+  const size = rect(500, 400);
   const sdom = S('svg', { ...viewBox(size) }, [
     ...renderSubSdoms(),
   ]);

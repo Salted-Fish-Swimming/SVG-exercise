@@ -14,7 +14,7 @@ const _zipfn = (v1, v2, fn) => {
 
 export const vadd = curried2((a, b) => _zipfn(a, b, _add));
 export const vadds = (...vects) => vects.reduce(vadd);
-export const vladd = (...terms) => terms.map(([k, v]) => vtimes(k, v)).reduce(vadd);
+export const vaddl = (...terms) => terms.map(([k, v]) => vtimes(k, v)).reduce(vadd);
 
 export const vminus = curried2((a, b) => _zipfn(a, b, _minus));
 
